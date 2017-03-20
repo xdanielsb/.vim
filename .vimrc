@@ -18,8 +18,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'wakatime/vim-wakatime'
-Plugin 'vim-go'
-Plugin 'emmet-vim'
+Plugin 'fatih/vim-go'
+Plugin 'mattn/emmet-vim'
 
 
 " after do this you run in the vim consoles :source %
@@ -113,4 +113,3 @@ set nowritebackup
 filetype plugin on
 
 setlocal omnifunc=go#complete#Complete
-
