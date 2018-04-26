@@ -1,4 +1,3 @@
-
 execute pathogen#infect()
 
 set nu "add numbers to each line
@@ -36,8 +35,10 @@ imap <C-v> <ESC>"+pa
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*
+    set wildignore+=.git\*,.hg\*,.svn\*,.pyc\*
 else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.pyc
 endif
 
+
+set ma  "Make the files modifiable in nerd tree."
