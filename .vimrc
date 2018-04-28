@@ -1,4 +1,3 @@
-
 execute pathogen#infect()
 
 set nu "add numbers to each line
@@ -17,9 +16,16 @@ set wildmenu              " search in the statusvar
 set wildmode=list:longest,full "list matches, then longest common part, then all
 set foldenable             "auto fold code 
 set autoindent            " indint at the same level of the previous line 
-set shiftwidth=2            " use indents of spaces
-set tabstop=2             " an identation every fou column
+
+"by default, the indent is 2 spaces. 
+set shiftwidth=2				" number of spaces to use for auto indent
 set softtabstop=2
+set tabstop=2						" use 2 spaces to represent the tab
+set expandtab           " enter spaces when tab is pressed
+
+" for html/rb files, 2 spaces
+autocmd Filetype python setlocal  shiftwidth=2 sw=2 expandtab
+
 set mouse=a               " enable mouse support
 map <C-n> :NERDTree       " Map Ctrl+n to open nerd tree ctrl+w w to come back to the nerd tree, press t to open in a new tab.
 map <C-s> :w!             " Fast save
@@ -36,8 +42,10 @@ imap <C-v> <ESC>"+pa
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*
+    set wildignore+=.git\*,.hg\*,.svn\*,.pyc\*
 else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.pyc
 endif
 
+
+set ma  "Make the files modifiable in nerd tree."
