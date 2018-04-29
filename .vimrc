@@ -1,4 +1,6 @@
 execute pathogen#infect()
+
+"mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 call pathogen#helptags() " generate helptags for everything in 'runtimepath'
 syntax on
 filetype plugin indent on
@@ -45,6 +47,10 @@ vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
 
+" Saving folds that are created
+autocmd BufWinLeave *.* mkview              " Saves code folds as a view
+autocmd BufWinEnter *.* silent loadview     " Loads the saved view containing the code folds
+
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
@@ -53,5 +59,20 @@ else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.pyc
 endif
 
+" Close vim if only NERDTree window is open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 
 set ma  "Make the files modifiable in nerd tree."
+
+
+" Syntastic basic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
