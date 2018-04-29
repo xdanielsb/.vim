@@ -1,4 +1,10 @@
 execute pathogen#infect()
+call pathogen#helptags() " generate helptags for everything in 'runtimepath'
+syntax on
+filetype plugin indent on
+
+"cd ~/.vim && git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim 
+set runtimepath^=~/.vim/bundle/ctrlp.vim  "awesome pluging to open files
 
 set nu "add numbers to each line
 set cursorline " highlight the current line 
