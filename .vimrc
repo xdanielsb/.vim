@@ -63,7 +63,15 @@ endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
+"Open NERDTree on startup
+"autocmd vimenter * NERDTree
+
+" Map ctrl-f to open NERDTree
+map <C-f> :NERDTreeToggle<CR>
 set ma  "Make the files modifiable in nerd tree."
+
+" Disable syntastic 
+map <C-a> :SyntasticToggleMode
 
 
 " Syntastic basic settings
@@ -76,3 +84,6 @@ let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" for c++ 11
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
