@@ -73,6 +73,12 @@ set ma  "Make the files modifiable in nerd tree."
 " Disable syntastic 
 map <C-a> :SyntasticToggleMode
 
+" Clipboard configurations
+if system('uname -s') == "Darwin\n"
+  set clipboard=unnamed "OSX
+else
+  set clipboard=unnamedplus "Linux
+endif
 
 " Syntastic basic settings
 set statusline+=%#warningmsg#
