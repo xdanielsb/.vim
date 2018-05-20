@@ -56,8 +56,12 @@ set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
     set wildignore+=.git\*,.hg\*,.svn\*,.pyc\*
 else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.pyc
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.pyc,*/node_modules/*
 endif
+
+let g:NERDTreeIgnore=['node_modules']
+
+" Ignore for NerdTree
 
 " Close vim if only NERDTree window is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -87,3 +91,9 @@ let g:syntastic_check_on_wq = 0
 " for c++ 11
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+
+
+"move lines up or down
+nnoremap <A-j> :m .+1<CR>==  "alt j
+nnoremap <A-k> :m .-2<CR>==  "alt k
