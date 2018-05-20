@@ -77,12 +77,6 @@ set ma  "Make the files modifiable in nerd tree."
 " Disable syntastic 
 map <C-a> :SyntasticToggleMode
 
-" Clipboard configurations
-if system('uname -s') == "Darwin\n"
-  set clipboard=unnamed "OSX
-else
-  set clipboard=unnamedplus "Linux
-endif
 
 " Syntastic basic settings
 set statusline+=%#warningmsg#
@@ -98,8 +92,15 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
-
-
 "move lines up or down
 nnoremap <A-j> :m .+1<CR>==  "alt j
 nnoremap <A-k> :m .-2<CR>==  "alt k
+
+"Code for the parenthesis
+inoremap ( ()<Esc>i
+inoremap { {}<Esc>i
+inoremap < <><Esc>i
+inoremap [ []<Esc>i
+inoremap " ""<Esc>i
+inoremap ' ''<Esc>i
+
