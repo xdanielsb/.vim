@@ -5,6 +5,8 @@ call pathogen#helptags() " generate helptags for everything in 'runtimepath'
 syntax on
 filetype plugin indent on
 
+" nerd-tree, syntastic,emmet vim , ctrlp
+"cd ~/.vim/bundle && git clone git://github.com/tpope/vim-commentary.git gc gcc
 "cd ~/.vim && git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim 
 set runtimepath^=~/.vim/bundle/ctrlp.vim  "awesome pluging to open files
 
@@ -22,7 +24,7 @@ set ignorecase            " case insensitive search
 set smartcase             " use case if any caps used to search
 set wildmenu              " search in the statusvar 
 set wildmode=list:longest,full "list matches, then longest common part, then all
-set foldenable             "auto fold code 
+"set foldenable             "auto fold code 
 set autoindent            " indint at the same level of the previous line 
 
 "by default, the indent is 2 spaces. 
@@ -36,7 +38,7 @@ autocmd Filetype python setlocal  shiftwidth=2 sw=2 expandtab
 
 set mouse=a               " enable mouse support
 map <C-n> :NERDTree       " Map Ctrl+n to open nerd tree ctrl+w w to come back to the nerd tree, press t to open in a new tab.
-map <C-s> :w!             " Fast save
+map <C-s> :wa<CR>            " Fast save
 
 set foldcolumn=1  "Add a bit extra margin to the left
 set clipboard=unnamedplus "Enable copy and paste from system's clipboard
@@ -71,18 +73,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "autocmd vimenter * NERDTree
 
 " Map ctrl-f to open NERDTree
-map <C-f> :NERDTreeToggle<CR>
+map <C-f> :NERDTreeToggle  <CR>
+
 set ma  "Make the files modifiable in nerd tree."
 
 " Disable syntastic 
 map <C-a> :SyntasticToggleMode
 
-" Clipboard configurations
-if system('uname -s') == "Darwin\n"
-  set clipboard=unnamed "OSX
-else
-  set clipboard=unnamedplus "Linux
-endif
 
 " Syntastic basic settings
 set statusline+=%#warningmsg#
@@ -103,10 +100,8 @@ nnoremap <A-j> :m .+1<CR>==  "alt j
 nnoremap <A-k> :m .-2<CR>==  "alt k
 
 "Code for the parenthesis
-inoremap ( ()<Esc>i
-inoremap { {}<Esc>i
-inoremap < <><Esc>i
-inoremap [ []<Esc>i
-inoremap " ""<Esc>i
-inoremap ' ''<Esc>i
-
+""inoremap ( ()<Esc>i
+""inoremap { {}<Esc>i
+""inoremap [ []<Esc>i
+""inoremap " ""<Esc>i
+""inoremap ' ''<Esc>i
