@@ -105,3 +105,6 @@ nnoremap <A-k> :m .-2<CR>==  "alt k
 ""inoremap [ []<Esc>i
 ""inoremap " ""<Esc>i
 ""inoremap ' ''<Esc>i
+
+"font 
+set guifont=Monospace\ 12
