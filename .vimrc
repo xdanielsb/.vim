@@ -106,5 +106,10 @@ nnoremap <A-k> :m .-2<CR>==  "alt k
 ""inoremap " ""<Esc>i
 ""inoremap ' ''<Esc>i
 
+
 "font 
-set guifont=Monospace\ 12
+set guifont=Monospace\ 11
+
+" cd ~/.vim && git clone https://github.com/flazz/vim-colorschemes.git && git submodule add https://github.com/flazz/vim-colorschemes.git bundle/colorschemes
+"background default -  elflord - evening - darkblue - industry torte 
+colorscheme darkblue
