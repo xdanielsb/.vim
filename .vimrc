@@ -112,4 +112,12 @@ set guifont=Monospace\ 11
 
 " cd ~/.vim && git clone https://github.com/flazz/vim-colorschemes.git && git submodule add https://github.com/flazz/vim-colorschemes.git bundle/colorschemes
 "background default -  elflord - evening - darkblue - industry torte 
-colorscheme darkblue
+"
+let hr = (strftime("%H"))
+if hr > 19
+  colorscheme darkblue
+elseif hr >= 8
+  colorscheme default
+else 
+  colorscheme darkblue
+endif
