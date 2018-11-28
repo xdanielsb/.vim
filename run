@@ -3,5 +3,7 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vi
 cd ~/.vim/bundle && git clone git://github.com/tpope/vim-commentary.git 
 cd ~/.vim && git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim 
 cd ~/.vim && git clone https://github.com/flazz/vim-colorschemes.git && git submodule add https://github.com/flazz/vim-colorschemes.git bundle/colorschemes
-git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+cd ~/.vim/bundle/ &&  git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+cd ~/.vim/bundle/ && git clone git@github.com:Valloric/YouCompleteMe.git 
+cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive
 
