@@ -1,0 +1,5 @@
+#!/bin/bash
+cp .vimrc ~/.vimrc
+cp -R autoload/ ~/.vim/
+cp -R bundle/ ~/.vim/
+cp -R vim-colorschemes/ ~/.vim/
