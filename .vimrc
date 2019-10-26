@@ -56,9 +56,10 @@ autocmd BufWinEnter *.* silent loadview     " Loads the saved view containing th
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*,.pyc\*
+    set wildignore+=.git\*,.hg\*,.svn\*,*/.pyc\*,*.so,/*.swp,/*.zip,/*.out
 else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.pyc,*/node_modules/*
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.pyc,*/node_modules/*,/*.so,/*.swp,/*.zip,/*.out
+
 endif
 
 let g:NERDTreeIgnore=['node_modules']
