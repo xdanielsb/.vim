@@ -34,7 +34,7 @@ set tabstop=2						" use 2 spaces to represent the tab
 set expandtab           " enter spaces when tab is pressed
 
 " for html/rb files, 2 spaces
-autocmd Filetype python setlocal  shiftwidth=2 sw=2 expandtab
+autocmd Filetype python setlocal  shiftwidth=4 sw=4 expandtab
 
 set mouse=a               " enable mouse support
 map <C-n> :NERDTree       " Map Ctrl+n to open nerd tree ctrl+w w to come back to the nerd tree, press t to open in a new tab.
@@ -116,9 +116,9 @@ set guifont=Monospace\ 11
 "
 let hr = (strftime("%H"))
 if hr > 19
-  colorscheme darkblue
+  colorscheme evening
 elseif hr >= 8
   colorscheme default
 else 
-  colorscheme darkblue
+  colorscheme evening
 endif
