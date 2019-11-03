@@ -39,6 +39,7 @@ autocmd Filetype python setlocal  shiftwidth=4 sw=4 expandtab
 set mouse=a               " enable mouse support
 map <C-n> :NERDTree       " Map Ctrl+n to open nerd tree ctrl+w w to come back to the nerd tree, press t to open in a new tab.
 map <C-s> :wa<CR>            " Fast save
+map <C-v> <C-b>          " Map open vertical to avoid conflicts with Multiplexer
 
 set foldcolumn=1  "Add a bit extra margin to the left
 set clipboard=unnamedplus "Enable copy and paste from system's clipboard
