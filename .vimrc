@@ -5,6 +5,23 @@ call pathogen#helptags() " generate helptags for everything in 'runtimepath'
 syntax on
 filetype plugin indent on
 
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" :source %
+" :PluginInstall
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'scrooloose/syntastic'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'mattn/emmet-vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 " nerd-tree, syntastic,emmet vim , ctrlp
 "cd ~/.vim/bundle && git clone git://github.com/tpope/vim-commentary.git gc gcc
 "cd ~/.vim && git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim 
@@ -28,11 +45,19 @@ set wildmode=list:longest,full "list matches, then longest common part, then all
 set autoindent            " indint at the same level of the previous line 
 
 "by default, the indent is 2 spaces. 
-set shiftwidth=2				" number of spaces to use for auto indent
-set softtabstop=2
-set tabstop=2						" use 2 spaces to represent the tab
-set expandtab           " enter spaces when tab is pressed
 
+
+if  &filetype ==# 'python'
+  set shiftwidth=4				" number of spaces to use for auto indent
+  set softtabstop=4
+  set tabstop=4						" use 2 spaces to represent the tab
+else 
+  set shiftwidth=2				" number of spaces to use for auto indent
+  set softtabstop=2
+  set tabstop=2						" use 2 spaces to represent the tab
+endif
+
+set expandtab           " enter spaces when tab is pressed
 " for html/rb files, 2 spaces
 autocmd Filetype python setlocal  shiftwidth=4 sw=4 expandtab
 
@@ -42,18 +67,28 @@ map <C-s> :wa<CR>            " Fast save
 map <C-v> <C-b>          " Map open vertical to avoid conflicts with Multiplexer
 
 set foldcolumn=1  "Add a bit extra margin to the left
-set clipboard=unnamedplus "Enable copy and paste from system's clipboard
+
+if system('uname') == "Darwin\n"  "Enable copy and paste from system's clipboard
+  set clipboard=unnamed "OSX
+els
+  set clipboard=unnamedplus "Linux
+endif
 
 " copy and paste
 vmap <C-c> "+yi
 vmap <C-x> "+c
-vmap <C-v> c<ESC>"+p
+map <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
+
+" CtrlP
+let g:ctrlp_map = '<C-p>'
+let g:ctrlp_cmd = 'CtrlP'
+map <C-p> :CtrlP <CR>
 
 " Saving folds that are created
 autocmd BufWinLeave *.* mkview              " Saves code folds as a view
-autocmd BufWinEnter *.* silent loadview     " Loads the saved view containing the code folds
 
+autocmd BufWinEnter *.* silent loadview     " Loads the saved view containing the code folds
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
@@ -75,6 +110,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "autocmd vimenter * NERDTree
 
 " Map ctrl-f to open NERDTree
+"
 map <C-f> :NERDTreeToggle  <CR>
 
 set ma  "Make the files modifiable in nerd tree."
@@ -84,19 +120,25 @@ map <C-a> :SyntasticToggleMode
 
 
 " Syntastic basic settings
+" :help syntastic-checkers
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " for c++ 11
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+" pip3 install pylint==1.9.2
+" pip3 install flake8
+let g:syntastic_python_checkers = ['python', 'pylint', 'flake8']
 
+" to display the checkers 
 "move lines up or down
 nnoremap <A-j> :m .+1<CR>==  "alt j
 nnoremap <A-k> :m .-2<CR>==  "alt k
@@ -108,9 +150,18 @@ nnoremap <A-k> :m .-2<CR>==  "alt k
 ""inoremap " ""<Esc>i
 ""inoremap ' ''<Esc>i
 
+"Enable tab navigation
+nmap <C-S-tab> :tabprevious<CR> 
+nmap <C-tab> :tabnext<CR> 
+map <C-S-tab> :tabprevious<CR> 
+map <C-tab> :tabnext<CR> 
+imap <C-S-tab> <Esc>:tabprevious<CR>i 
+imap <C-tab> <Esc>:tabnext<CR>i 
+nmap <C-t> :tabnew<CR> 
+imap <C-t> <Esc>:tabnew<CR>
 
 "font 
-set guifont=Monospace\ 11
+"set guifont=Monospace\ 11
 
 " cd ~/.vim && git clone https://github.com/flazz/vim-colorschemes.git && git submodule add https://github.com/flazz/vim-colorschemes.git bundle/colorschemes
 "background default -  elflord - evening - darkblue - industry torte 
