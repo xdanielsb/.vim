@@ -16,7 +16,9 @@ call vundle#begin()
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'lepture/vim-jinja'
 Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-commentary'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -136,7 +138,7 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 " pip3 install pylint==1.9.2
 " pip3 install flake8
-let g:syntastic_python_checkers = ['python', 'pylint', 'flake8']
+let g:syntastic_python_checkers = ['pep8', 'flake8']
 
 " to display the checkers 
 "move lines up or down
@@ -160,6 +162,9 @@ imap <C-tab> <Esc>:tabnext<CR>i
 nmap <C-t> :tabnew<CR> 
 imap <C-t> <Esc>:tabnew<CR>
 
+" cd ~/.vim/bundle/YouCompleteMe
+" python3 install.py --clang-completer --system-libclang
+
 "font 
 "set guifont=Monospace\ 11
 
@@ -174,3 +179,6 @@ elseif hr >= 8
 else 
   colorscheme evening
 endif
+
+" Jinja templates
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
