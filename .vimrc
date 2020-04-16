@@ -19,6 +19,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'lepture/vim-jinja'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'janko/vim-test'
+Plugin 'valloric/youcompleteme'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -34,6 +36,7 @@ set cursorline " highlight the current line
 hi cursorline guibg=#FFF633 " highlight the current line with  yellow colour
 hi CursorColumn guibg=#FFF633 " highlight cursor
 
+set nowrap
 set tabpagemax=15                 " only show 15t tabs
 set showmode              " always show the mode
 set linespace=0           " no extra spaces for dummies
@@ -64,7 +67,7 @@ set expandtab           " enter spaces when tab is pressed
 autocmd Filetype python setlocal  shiftwidth=4 sw=4 expandtab
 
 set mouse=a               " enable mouse support
-map <C-n> :NERDTree       " Map Ctrl+n to open nerd tree ctrl+w w to come back to the nerd tree, press t to open in a new tab.
+" map <C-n> :NERDTree       " Map Ctrl+n to open nerd tree ctrl+w w to come back to the nerd tree, press t to open in a new tab.
 map <C-s> :wa<CR>            " Fast save
 map <C-v> <C-b>          " Map open vertical to avoid conflicts with Multiplexer
 
@@ -81,6 +84,15 @@ vmap <C-c> "+yi
 vmap <C-x> "+c
 map <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
+
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+" press t after ctrl +n, cool
+
+nmap <silent> t<C-n> :TestNearest -s<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 " CtrlP
 let g:ctrlp_map = '<C-p>'
@@ -138,7 +150,7 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 " pip3 install pylint==1.9.2
 " pip3 install flake8
-let g:syntastic_python_checkers = ['pep8', 'flake8']
+let g:syntastic_python_checkers = ['pep8', 'flake8', 'black']
 
 " to display the checkers 
 "move lines up or down
