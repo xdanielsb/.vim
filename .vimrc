@@ -86,7 +86,7 @@ map <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
 
 " these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
-" press t after ctrl +n, cool
+" press t after ctrl +n, cool for testing <vim-test>
 
 nmap <silent> t<C-n> :TestNearest -s<CR>
 nmap <silent> t<C-f> :TestFile<CR>
@@ -194,3 +194,12 @@ endif
 
 " Jinja templates
 au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
+
+
+" npm install -g jshint
+let g:syntastic_javascript_checkers = ['jshint']
+
+
+" switch tabs faster [ shift + h, shift +l ]
+nnoremap H gT
+nnoremap L gt
