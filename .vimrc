@@ -21,6 +21,8 @@ Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'janko/vim-test'
 Plugin 'valloric/youcompleteme'
+Plugin 'chiel92/vim-autoformat'
+Plugin 'leafoftree/vim-vue-plugin'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -28,11 +30,11 @@ filetype plugin indent on    " required
 
 " nerd-tree, syntastic,emmet vim , ctrlp
 "cd ~/.vim/bundle && git clone git://github.com/tpope/vim-commentary.git gc gcc
-"cd ~/.vim && git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim 
+"cd ~/.vim && git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim  "awesome pluging to open files
 
 set nu "add numbers to each line
-set cursorline " highlight the current line 
+set cursorline " highlight the current line
 hi cursorline guibg=#FFF633 " highlight the current line with  yellow colour
 hi CursorColumn guibg=#FFF633 " highlight cursor
 
@@ -44,22 +46,22 @@ set incsearch             " find as you type search
 set hlsearch              " highlight search terms
 set ignorecase            " case insensitive search
 set smartcase             " use case if any caps used to search
-set wildmenu              " search in the statusvar 
+set wildmenu              " search in the statusvar
 set wildmode=list:longest,full "list matches, then longest common part, then all
-"set foldenable             "auto fold code 
-set autoindent            " indint at the same level of the previous line 
+"set foldenable             "auto fold code
+set autoindent            " indint at the same level of the previous line
 
-"by default, the indent is 2 spaces. 
+"by default, the indent is 2 spaces.
 
 
 if  &filetype ==# 'python'
-  set shiftwidth=4				" number of spaces to use for auto indent
+  set shiftwidth=4        " number of spaces to use for auto indent
   set softtabstop=4
-  set tabstop=4						" use 2 spaces to represent the tab
-else 
-  set shiftwidth=2				" number of spaces to use for auto indent
+  set tabstop=4           " use 2 spaces to represent the tab
+else
+  set shiftwidth=2        " number of spaces to use for auto indent
   set softtabstop=2
-  set tabstop=2						" use 2 spaces to represent the tab
+  set tabstop=2           " use 2 spaces to represent the tab
 endif
 
 set expandtab           " enter spaces when tab is pressed
@@ -106,9 +108,9 @@ autocmd BufWinEnter *.* silent loadview     " Loads the saved view containing th
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*,*/.pyc\*,*.so,/*.swp,/*.zip,/*.out
+  set wildignore+=.git\*,.hg\*,.svn\*,*/.pyc\*,*.so,/*.swp,/*.zip,/*.out
 else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.pyc,*/node_modules/*,/*.so,/*.swp,/*.zip,/*.out
+  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/.pyc,*/node_modules/*,/*.so,/*.swp,/*.zip,/*.out
 
 endif
 
@@ -129,7 +131,7 @@ map <C-f> :NERDTreeToggle  <CR>
 
 set ma  "Make the files modifiable in nerd tree."
 
-" Disable syntastic 
+" Disable syntastic
 map <C-a> :SyntasticToggleMode
 
 
@@ -152,7 +154,7 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 " pip3 install flake8
 let g:syntastic_python_checkers = ['pep8', 'flake8', 'black']
 
-" to display the checkers 
+" to display the checkers
 "move lines up or down
 nnoremap <A-j> :m .+1<CR>==  "alt j
 nnoremap <A-k> :m .-2<CR>==  "alt k
@@ -165,30 +167,30 @@ nnoremap <A-k> :m .-2<CR>==  "alt k
 ""inoremap ' ''<Esc>i
 
 "Enable tab navigation
-nmap <C-S-tab> :tabprevious<CR> 
-nmap <C-tab> :tabnext<CR> 
-map <C-S-tab> :tabprevious<CR> 
-map <C-tab> :tabnext<CR> 
-imap <C-S-tab> <Esc>:tabprevious<CR>i 
-imap <C-tab> <Esc>:tabnext<CR>i 
-nmap <C-t> :tabnew<CR> 
+nmap <C-S-tab> :tabprevious<CR>
+nmap <C-tab> :tabnext<CR>
+map <C-S-tab> :tabprevious<CR>
+map <C-tab> :tabnext<CR>
+imap <C-S-tab> <Esc>:tabprevious<CR>i
+imap <C-tab> <Esc>:tabnext<CR>i
+nmap <C-t> :tabnew<CR>
 imap <C-t> <Esc>:tabnew<CR>
 
 " cd ~/.vim/bundle/YouCompleteMe
 " python3 install.py --clang-completer --system-libclang
 
-"font 
+"font
 "set guifont=Monospace\ 11
 
 " cd ~/.vim && git clone https://github.com/flazz/vim-colorschemes.git && git submodule add https://github.com/flazz/vim-colorschemes.git bundle/colorschemes
-"background default -  elflord - evening - darkblue - industry torte 
+"background default -  elflord - evening - darkblue - industry torte
 "
 let hr = (strftime("%H"))
 if hr > 19
   colorscheme evening
 elseif hr >= 8
   colorscheme default
-else 
+else
   colorscheme evening
 endif
 
@@ -203,3 +205,15 @@ let g:syntastic_javascript_checkers = ['jshint']
 " switch tabs faster [ shift + h, shift +l ]
 nnoremap H gT
 nnoremap L gt
+
+" height command line
+set cmdheight=2
+
+
+" npm install -g js-beautify
+" pip install black
+au BufWrite * :Autoformat " format the code upon save the file
+
+
+"disable Autoformat for rst files
+autocmd FileType rst let b:did_indent = 1
