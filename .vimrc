@@ -3,7 +3,6 @@ execute pathogen#infect()
 "mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 call pathogen#helptags() " generate helptags for everything in 'runtimepath'
 syntax on
-filetype plugin indent on
 
 filetype off                  " required
 
@@ -149,10 +148,15 @@ let g:syntastic_check_on_wq = 0
 
 " for c++ 11
 let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_checkers = ['gcc']
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 " pip3 install pylint==1.9.2
 " pip3 install flake8
 let g:syntastic_python_checkers = ['pep8', 'flake8', 'black']
+
+" npm install -g jshint
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_cpp_checkers = ['gcc']
 
 " to display the checkers
 "move lines up or down
@@ -195,11 +199,10 @@ else
 endif
 
 " Jinja templates
-au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
+" au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 
 
-" npm install -g jshint
-let g:syntastic_javascript_checkers = ['jshint']
+
 
 
 " switch tabs faster [ shift + h, shift +l ]
@@ -217,3 +220,6 @@ au BufWrite * :Autoformat " format the code upon save the file
 
 "disable Autoformat for rst files
 autocmd FileType rst let b:did_indent = 1
+
+" avoid conflict for syntastic cpp
+let g:ycm_show_diagnostics_ui = 0
