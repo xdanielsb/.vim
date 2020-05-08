@@ -192,9 +192,8 @@ imap <C-t> <Esc>:tabnew<CR>
 let hr = (strftime("%H"))
 if hr > 19
   colorscheme evening
-elseif hr >= 8
-  colorscheme default
 else
+  "colorscheme default
   colorscheme evening
 endif
 
