@@ -217,8 +217,15 @@ set cmdheight=2
 au BufWrite * :Autoformat " format the code upon save the file
 
 
-"disable Autoformat for rst files
-autocmd FileType rst let b:did_indent = 1
-
 " avoid conflict for syntastic cpp
 let g:ycm_show_diagnostics_ui = 0
+
+
+" make available relative number
+set rnu
+
+
+" commands
+"   move to last editing place   g;
+"   move first line gg
+"   move last line G
