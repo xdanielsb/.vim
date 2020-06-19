@@ -22,6 +22,7 @@ Plugin 'janko/vim-test'
 Plugin 'valloric/youcompleteme'
 Plugin 'chiel92/vim-autoformat'
 Plugin 'leafoftree/vim-vue-plugin'
+Plugin 'prettier/vim-prettier'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -95,8 +96,12 @@ nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
+" :echo fnamemodify(expand('%'), ':t') " show the name of the current file
+
 " CtrlP
 let g:ctrlp_map = '<C-p>'
+
+" CtrlP
 let g:ctrlp_cmd = 'CtrlP'
 map <C-p> :CtrlP <CR>
 
@@ -214,7 +219,9 @@ set cmdheight=2
 
 " npm install -g js-beautify
 " pip install black
-au BufWrite * :Autoformat " format the code upon save the file
+" au BufWrite * :Autoformat " format the code upon save the file
+
+let g:prettier#autoformat = 1
 
 
 " avoid conflict for syntastic cpp
